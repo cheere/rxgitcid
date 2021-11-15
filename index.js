@@ -1,4 +1,4 @@
-const childExec = require('child_process').exec
+const childExec = require('child_process')
 
 const LibGit = {}
 
@@ -10,7 +10,7 @@ LibGit.cid = function (callback) {
     callback && callback(cid)
   }
 
-  childExec(GitCommitLogSh, { encoding: 'utf8' }, function (err, sdout, stderr) {
+  childExec.exec(GitCommitLogSh, { encoding: 'utf8' }, function (err, sdout, stderr) {
     let cid = DefaultRes
     if (!err) {
       cid = formatLog(sdout)
@@ -22,7 +22,7 @@ LibGit.cid = function (callback) {
 LibGit.cidSync = function () {
   let cid = DefaultRes
   try {
-    const logBuffer = childExecSync(GitCommitLogSh)
+    const logBuffer = childExec.execSync(GitCommitLogSh)
     const log = logBuffer.toString()
     cid = formatLog(log)
   } catch (error) {

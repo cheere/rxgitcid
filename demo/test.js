@@ -1,4 +1,5 @@
 const rxgitcid = require('../dist/rxgitcid')
+// const rxgitcid = require('../index.js')
 
 // 1
 const gitLastId = rxgitcid.cidSync()

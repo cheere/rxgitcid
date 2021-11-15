@@ -1,71 +1,7 @@
-
 /*!
  * rxgitcid
  * version: 0.0.1
  * repo: https://github.com/cheere/rxgitcid
- * build: 2021-11-15 16:45:32
+ * build: 2021-11-15 17:07:45
  */
-
-define(['child_process'], (function (require$$0) { 'use strict';
-
-  function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-  var require$$0__default = /*#__PURE__*/_interopDefaultLegacy(require$$0);
-
-  const childExec = require$$0__default["default"].exec;
-
-  const LibGit = {};
-
-  const GitCommitLogSh = 'git log -1';
-  const DefaultRes = 'unknow';
-
-  LibGit.cid = function (callback) {
-    function cb(cid) {
-      callback && callback(cid);
-    }
-
-    childExec(GitCommitLogSh, { encoding: 'utf8' }, function (err, sdout, stderr) {
-      let cid = DefaultRes;
-      if (!err) {
-        cid = formatLog(sdout);
-      }
-      cb(cid);
-    });
-  };
-
-  LibGit.cidSync = function () {
-    let cid = DefaultRes;
-    try {
-      const logBuffer = childExecSync(GitCommitLogSh);
-      const log = logBuffer.toString();
-      cid = formatLog(log);
-    } catch (error) {
-      cid = DefaultRes;
-    }
-    return cid
-  };
-
-  function formatLog(log) {
-    let cid = DefaultRes;
-    if (!log) {
-      return cid
-    }
-    const logArray = log.split(' ');
-    const second = logArray.length > 1 ? logArray[1] : log;
-    if (second) {
-      if (second.length > 7) {
-        cid = second.substring(0, 7);
-      } else {
-        cid = second;
-      }
-    }
-    return cid
-  }
-
-  LibGit.version = '"0.0.1"';
-
-  var gitLastCommitId = LibGit;
-
-  return gitLastCommitId;
-
-}));
+define(["child_process"],(function(n){"use strict";function t(n){return n&&"object"==typeof n&&"default"in n?n:{default:n}}const e=t(n).default,c={},i="git log -1",u="unknow";function o(n){let t=u;if(!n)return t;const e=n.split(" "),c=e.length>1?e[1]:n;return c&&(t=c.length>7?c.substring(0,7):c),t}return c.cid=function(n){e.exec(i,{encoding:"utf8"},(function(t,e,c){let i=u;t||(i=o(e)),function(t){n&&n(t)}(i)}))},c.cidSync=function(){let n=u;try{const t=e.execSync(i);n=o(t.toString())}catch(t){n=u}return n},c.version='"0.0.1"',c}));

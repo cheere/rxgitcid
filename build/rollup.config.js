@@ -25,7 +25,7 @@ export default {
     commonjs(),
     globals(),
     builtins(),
-    // terser(),
+    terser(),
   ],
-  external: ['path', 'child_process'],
+  external: ['child_process'],
 };

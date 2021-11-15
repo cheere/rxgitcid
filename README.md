@@ -13,15 +13,15 @@ npm i rxgitcid --save-dev
   const rxgitcid = require('rxgitcid')
   // or
   import rxgitcid from 'rxgitcid'
-// 1
+
+  // 1
   const gitLastId = rxgitcid.cidSync()
-  console.log('id =', gitLastId)
+  console.log('id =', gitLastId) // ec0b419
 
   // 2
   rxgitcid.cid(id => {
-    console.log('cb id =', id)
+    console.log('cb id =', id) // ec0b419
   })
-
 ```
 
 # api
