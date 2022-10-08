@@ -5,12 +5,12 @@ const LibGit = {}
 const GitCommitLogSh = 'git log -1'
 const DefaultRes = 'unknow'
 
-LibGit.cid = function (callback) {
+LibGit.pathCid = function (path, callback) {
   function cb(cid) {
     callback && callback(cid)
   }
-
-  childExec.exec(GitCommitLogSh, { encoding: 'utf8' }, function (err, sdout, stderr) {
+  const sh = joinSh(path)
+  childExec.exec(sh, { encoding: 'utf8' }, function (err, sdout, stderr) {
     let cid = DefaultRes
     if (!err) {
       cid = formatLog(sdout)
@@ -19,16 +19,40 @@ LibGit.cid = function (callback) {
   })
 }
 
-LibGit.cidSync = function () {
+LibGit.cid = function (callback) {
+  function cb(cid) {
+    callback && callback(cid)
+  }
+  const sh = GitCommitLogSh
+  childExec.exec(sh, { encoding: 'utf8' }, function (err, sdout, stderr) {
+    let cid = DefaultRes
+    if (!err) {
+      cid = formatLog(sdout)
+    }
+    cb(cid)
+  })
+}
+
+LibGit.cidSync = function (path) {
   let cid = DefaultRes
   try {
-    const logBuffer = childExec.execSync(GitCommitLogSh)
+    const sh = joinSh(path)
+    const logBuffer = childExec.execSync(sh)
     const log = logBuffer.toString()
     cid = formatLog(log)
   } catch (error) {
     cid = DefaultRes
   }
   return cid
+}
+
+function joinSh(path) {
+  let sh = ''
+  if (path && typeof path === 'string') {
+    sh = 'cd ' + path + ' && '
+  }
+  sh += GitCommitLogSh
+  return sh
 }
 
 function formatLog(log) {

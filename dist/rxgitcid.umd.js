@@ -1,7 +1,7 @@
 /*!
  * rxgitcid
- * version: 0.0.1
+ * version: 0.0.2
  * repo: https://github.com/cheere/rxgitcid
- * build: 2021-11-15 17:07:45
+ * build: 2022-10-08 15:37:18
  */
-!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t(require("child_process")):"function"==typeof define&&define.amd?define(["child_process"],t):((e="undefined"!=typeof globalThis?globalThis:e||self).rxgitcid=e.rxgitcid||{},e.rxgitcid.umd=t(e.require$$0))}(this,(function(e){"use strict";function t(e){return e&&"object"==typeof e&&"default"in e?e:{default:e}}const n=t(e).default,i={},o="git log -1",c="unknow";function u(e){let t=c;if(!e)return t;const n=e.split(" "),i=n.length>1?n[1]:e;return i&&(t=i.length>7?i.substring(0,7):i),t}return i.cid=function(e){n.exec(o,{encoding:"utf8"},(function(t,n,i){let o=c;t||(o=u(n)),function(t){e&&e(t)}(o)}))},i.cidSync=function(){let e=c;try{const t=n.execSync(o);e=u(t.toString())}catch(t){e=c}return e},i.version='"0.0.1"',i}));
+!function(t,n){"object"==typeof exports&&"undefined"!=typeof module?module.exports=n(require("child_process")):"function"==typeof define&&define.amd?define(["child_process"],n):((t="undefined"!=typeof globalThis?globalThis:t||self).rxgitcid=t.rxgitcid||{},t.rxgitcid.umd=n(t.require$$0))}(this,(function(t){"use strict";function n(t){return t&&"object"==typeof t&&"default"in t?t:{default:t}}const e=n(t).default,i={},o="git log -1",c="unknow";function u(t){let n="";return t&&"string"==typeof t&&(n="cd "+t+" && "),n+=o,n}function f(t){let n=c;if(!t)return n;const e=t.split(" "),i=e.length>1?e[1]:t;return i&&(n=i.length>7?i.substring(0,7):i),n}return i.pathCid=function(t,n){const i=u(t);e.exec(i,{encoding:"utf8"},(function(t,e,i){let o=c;t||(o=f(e)),function(t){n&&n(t)}(o)}))},i.cid=function(t){e.exec("git log -1",{encoding:"utf8"},(function(n,e,i){let o=c;n||(o=f(e)),function(n){t&&t(n)}(o)}))},i.cidSync=function(t){let n=c;try{const i=u(t),o=e.execSync(i);n=f(o.toString())}catch(t){n=c}return n},i.version='"0.0.2"',i}));

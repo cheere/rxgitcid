@@ -4,5 +4,10 @@ declare module 'rxgitcid' {
     callback: (id: string | 'unknow') => void
   ): void;
 
-  export function cidSync(value: any): String;
+  export function pathCid(
+    path: string | null,
+    callback: (id: string | 'unknow') => void
+  ): void;
+
+  export function cidSync(path: string | null): String;
 }
