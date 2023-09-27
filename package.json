@@ -1,6 +1,6 @@
 {
   "name": "rxgitcid",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Get the commit `ID` of the last commit of git.",
   "main": "dist/rxgitcid.js",
   "scripts": {

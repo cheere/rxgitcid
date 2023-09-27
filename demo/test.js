@@ -10,3 +10,7 @@ rxgitcid.cid(id => {
   console.log('cb id =', id)
 })
 
+// 3
+rxgitcid.cidObject(res => {
+  console.log('cb res =', res)
+})
