@@ -83,7 +83,7 @@ LibGit.coreCidSync = function (singleCid, path) {
     if (singleCid) {
       cid = formatLog(log)
     } else {
-      cid = formatLogObject(sdout)
+      cid = formatLogObject(log)
     }
   } catch (error) {
     if (singleCid) {
